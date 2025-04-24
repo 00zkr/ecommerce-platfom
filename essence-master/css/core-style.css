@@ -1754,10 +1754,15 @@ img {
               display: inline-block;
               height: 40px; /* match the image height */
           }
-footer div{
+          .footer-logo{
     display: inline-block;
     height: 40px; /* match the image height */
-}          
+}  
+
+.align-left-image img {
+  display: block;
+  margin-left: 0;
+}
 /* ##### The End ##### */
 
 /*# sourceMappingURL=core-style.css.map */

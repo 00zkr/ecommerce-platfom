@@ -1749,6 +1749,15 @@ img {
           .contact-area .contact-info .contact-address p:last-child a:hover {
             color: #0315ff; }
 
+    
+            .nav-brand {
+              display: inline-block;
+              height: 40px; /* match the image height */
+          }
+footer div{
+    display: inline-block;
+    height: 40px; /* match the image height */
+}          
 /* ##### The End ##### */
 
 /*# sourceMappingURL=core-style.css.map */

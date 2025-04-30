@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +30,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="index.html" ><img src="img/core-img/shoe.png" style="height: 40px; width: auto;" alt=""></a>
+                <a class="nav-brand" href="index.php" ><img src="img/core-img/shoe.png" style="height: 40px; width: auto;" alt=""></a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -45,19 +48,19 @@
                                 <div class="megamenu">
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">Brands</li>
-                                        <li><a href="shop.html">Nike</a></li>
-                                        <li><a href="shop.html">Adidas </a></li>
-                                        <li><a href="shop.html">Puma</a></li>
-                                        <li><a href="shop.html">Reebok</a></li>
-                                        <li><a href="shop.html">New Balance</a></li>
+                                        <li><a href="shop.php">Nike</a></li>
+                                        <li><a href="shop.php">Adidas </a></li>
+                                        <li><a href="shop.php">Puma</a></li>
+                                        <li><a href="shop.php">Reebok</a></li>
+                                        <li><a href="shop.php">New Balance</a></li>
                                     </ul>
                                     <ul class="single-mega cn-col-4">
                                         <li class="title">&nbsp;</li>
-                                        <li><a href="shop.html">Converse</a></li>
-                                        <li><a href="shop.html">Vans</a></li>
-                                        <li><a href="shop.html">Under Armour</a></li>
-                                        <li><a href="shop.html">Under Armour</a></li>
-                                        <li><a href="shop.html">Dr. Martens</a></li>
+                                        <li><a href="shop.php">Converse</a></li>
+                                        <li><a href="shop.php">Vans</a></li>
+                                        <li><a href="shop.php">Under Armour</a></li>
+                                        <li><a href="shop.php">Under Armour</a></li>
+                                        <li><a href="shop.php">Dr. Martens</a></li>
                                     </ul>
                                     <ul class="single-mega cn-col-4"></ul>
 
@@ -68,9 +71,9 @@
                             </li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="shop.php">Shop</a></li>
+                                    <li><a href="contact.php">Contact</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -94,8 +97,13 @@
                         <img src="img/core-img/user.svg" alt="">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="register.html">Register</a>
-                        <a class="dropdown-item" href="login.html">Login</a>
+                        <?php if (isset($_SESSION['user_id'])): ?>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
+                            <a class="dropdown-item" href="../backend/config/logout.php">Logout</a>
+                        <?php else: ?>
+                            <a class="dropdown-item" href="register.php">Register</a>
+                            <a class="dropdown-item" href="login.php">Login</a>
+                        <?php endif; ?>
                     </div>
                 </div>
                 
@@ -183,7 +191,7 @@
                     <li><span>total:</span> <span>$232.00</span></li>
                 </ul>
                 <div class="checkout-btn mt-100">
-                    <a href="checkout.html" class="btn essence-btn">check out</a>
+                    <a href="checkout.php" class="btn essence-btn">check out</a>
                 </div>
             </div>
         </div>
@@ -240,7 +248,7 @@
                             <!-- Product Description -->
                             <div class="product-description">
                                 <span>topshop</span>
-                                <a href="single-product-details.html">
+                                <a href="single-product-details.php">
                                     <h6>Knot Front Mini Dress</h6>
                                 </a>
                                 <p class="product-price">$80.00</p>
@@ -270,7 +278,7 @@
                             <!-- Product Description -->
                             <div class="product-description">
                                 <span>topshop</span>
-                                <a href="single-product-details.html">
+                                <a href="single-product-details.php">
                                     <h6>Poplin Displaced Wrap Dress</h6>
                                 </a>
                                 <p class="product-price">$80.00</p>
@@ -306,7 +314,7 @@
                             <!-- Product Description -->
                             <div class="product-description">
                                 <span>mango</span>
-                                <a href="single-product-details.html">
+                                <a href="single-product-details.php">
                                     <h6>PETITE Crepe Wrap Mini Dress</h6>
                                 </a>
                                 <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>
@@ -342,7 +350,7 @@
                             <!-- Product Description -->
                             <div class="product-description">
                                 <span>mango</span>
-                                <a href="single-product-details.html">
+                                <a href="single-product-details.php">
                                     <h6>PETITE Belted Jumper Dress</h6>
                                 </a>
                                 <p class="product-price">$80.00</p>
@@ -401,13 +409,13 @@
                     <div class="single_widget_area d-flex mb-30">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="img/core-img/shoe2.png" style="height: 40px; width: auto;" alt=""></a>
+                            <a href="index.php"><img src="img/core-img/shoe2.png" style="height: 40px; width: auto;" alt=""></a>
                         </div>
                         <!-- Footer Menu -->
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="shop.html">Shop</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="shop.php">Shop</a></li>
+                                <li><a href="contact.php">Contact</a></li>
                             </ul>
                         </div>
                     </div>

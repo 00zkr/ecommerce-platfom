@@ -1763,6 +1763,15 @@ img {
   display: block;
   margin-left: 0;
 }
+.dropdown-menu{
+  background-color: #252525;
+}
+.dropdown-menu a{
+  color: #ffffff;
+}
+.dropdown-menu a:hover{
+  background-color: #252525;
+}
 /* ##### The End ##### */
 
 /*# sourceMappingURL=core-style.css.map */

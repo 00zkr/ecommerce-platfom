@@ -37,7 +37,7 @@ session_start();
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="index.php" ><img src="../public/img/core-img/shoe.png" style="height: 40px; width: auto;" alt=""></a>
+                <img src="../public/img/core-img/shoe.png" style="height: 40px; width: auto;" alt="">
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -51,33 +51,7 @@ session_start();
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="#">Shop</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Brands</li>
-                                        <li><a href="shop.php">Nike</a></li>
-                                        <li><a href="shop.php">Adidas </a></li>
-                                        <li><a href="shop.php">Puma</a></li>
-                                        <li><a href="shop.php">Reebok</a></li>
-                                        <li><a href="shop.php">New Balance</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">&nbsp;</li>
-                                        <li><a href="shop.php">Converse</a></li>
-                                        <li><a href="shop.php">Vans</a></li>
-                                        <li><a href="shop.php">Under Armour</a></li>
-                                        <li><a href="shop.php">Under Armour</a></li>
-                                        <li><a href="shop.php">Dr. Martens</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4"></ul>
-
-                                    <div class="single-mega cn-col-4 align-left-image" >
-                                        <img src="../public/img/bg-img/bg-6.jpg"  alt="" >
-                                    </div>
-                                </div>
-                            </li>
-                            <li><a href="cart.php">cart</a></li>
-                            <li><a href="orders.php">orders</a></li>
+                            <li><a href="vendor_products.php">Products</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -87,13 +61,6 @@ session_start();
             <!-- Header Meta Data -->
             <div class="header-meta d-flex clearfix justify-content-end">
                 <!-- Search Area -->
-                <div class="search-area">
-                    <form action="#" method="post">
-                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div>
-                <!-- User Login Info -->
                 <div class="user-login-info dropdown">
                     <a href="#" class="dropdown-toggle" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="../public/img/core-img/user.svg" alt="">
@@ -109,10 +76,6 @@ session_start();
                     </div>
                 </div>
                 
-                <!-- Cart Area -->
-                <div class="cart-area">
-                    <a href="../views/cart.php" id="essenceCartBtn"><img src="../public/img/core-img/bag.svg" alt=""> <span>3</span></a>
-                </div>
             </div>
 
         </div>

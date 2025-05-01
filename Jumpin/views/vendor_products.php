@@ -1,5 +1,5 @@
 <?php
-include '../includes/header.php';
+include '../includes/vendor_header.php';
 require_once '../config/database.php';
 
 $vendor_id = $_SESSION['user_id'];
@@ -46,4 +46,4 @@ $result = $stmt->get_result();
   </table>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/admin_footer.php'; ?>

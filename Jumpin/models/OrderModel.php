@@ -140,6 +140,34 @@ class OrderModel {
         }
         return $items;
     }
+
+    public function getAllOrdersWithItems() {
+        $sql = "SELECT o.*, u.full_name FROM orders o
+                JOIN users u ON o.user_id = u.user_id
+                ORDER BY o.order_date DESC";
+        $result = $this->conn->query($sql);
+    
+        $orders = [];
+        while ($order = $result->fetch_assoc()) {
+            $order_id = $order['order_id'];
+            $items = [];
+    
+            $item_sql = "SELECT oi.*, p.name AS product_name
+                         FROM order_items oi
+                         JOIN products p ON oi.product_id = p.product_id
+                         WHERE oi.order_id = $order_id";
+            $item_result = $this->conn->query($item_sql);
+            while ($item = $item_result->fetch_assoc()) {
+                $items[] = $item;
+            }
+    
+            $order['items'] = $items;
+            $orders[] = $order;
+        }
+    
+        return $orders;
+    }
+    
     
     
 }

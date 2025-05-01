@@ -96,5 +96,38 @@ public function getProductsByBrand($brand_id) {
     $stmt->execute();
     return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 }
+
+
+public function getProductWithBrand($productId) {
+    // Ensure productId is provided
+    if (empty($productId)) {
+        return null;
+    }
+
+    // Debug: Log the SQL query to check for issues
+    $sql = "SELECT p.*, b.name AS brand_name 
+            FROM Products p 
+            JOIN Brands b ON p.brand_id = b.brand_id 
+            WHERE p.product_id = ?";
+    
+    error_log("SQL Query: " . $sql);
+
+    $stmt = $this->conn->prepare($sql);
+    
+    if (!$stmt) {
+        die('MySQL error: ' . $this->conn->error);  // Check for query preparation errors
+    }
+
+    $stmt->bind_param("i", $productId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        return $result->fetch_assoc();  // Return the product with brand info
+    }
+
+    return null;
+}
+
 }
 ?>

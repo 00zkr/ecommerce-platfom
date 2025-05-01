@@ -1,24 +1,40 @@
-<?php include '../includes/header.php'; ?>
+<?php
+// Include database and controller
+require_once '../config/database.php';
+require_once '../controllers/ProductController.php';
+
+// Get product ID from URL or other source
+$productId = isset($_GET['product_id']) ? $_GET['product_id'] : null;
+
+// If product ID is not provided, show an error
+if (!$productId) {
+    echo "No product ID provided.";
+    exit;
+}
+
+// Create a controller instance and fetch product details
+$productController = new ProductController($conn);
+$product = $productController->getProductDetails($productId);
+include '../includes/header.php'; ?>
     <!-- ##### Single Product Details Area Start ##### -->
     <section class="single_product_details_area d-flex align-items-center">
 
         <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
-                <img src="../public/img/product-img/product-big-1.jpg" alt="">
-                <img src="../public/img/product-img/product-big-2.jpg" alt="">
-                <img src="../public/img/product-img/product-big-3.jpg" alt="">
+            <img src="../public/img/product-img/<?= $product['imageName1'] ?>" alt="">
+            <img src="../public/img/product-img/<?= $product['imageName2'] ?>" alt="">
             </div>
         </div>
 
         <!-- Single Product Description -->
         <div class="single_product_desc clearfix">
-            <span>mango</span>
+        <span><?= htmlspecialchars($product['brand_name']) ?></span>
             <a href="cart.html">
-                <h2>One Shoulder Glitter Midi Dress</h2>
+                <h2><?= htmlspecialchars($product['name']) ?></h2>
             </a>
-            <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
-            <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+            <p class="product-price">$<?= htmlspecialchars($product['price']) ?></p>
+            <p class="product-desc"><?= htmlspecialchars($product['description']) ?></p>
 
             <!-- Form -->
             <form class="cart-form clearfix" method="post">
@@ -30,21 +46,11 @@
                         <option value="value">Size: M</option>
                         <option value="value">Size: S</option>
                     </select>
-                    <select name="select" id="productColor">
-                        <option value="value">Color: Black</option>
-                        <option value="value">Color: White</option>
-                        <option value="value">Color: Red</option>
-                        <option value="value">Color: Purple</option>
-                    </select>
                 </div>
                 <!-- Cart & Favourite Box -->
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
                     <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
-                    <!-- Favourite -->
-                    <div class="product-favourite ml-4">
-                        <a href="#" class="favme fa fa-heart"></a>
-                    </div>
                 </div>
             </form>
         </div>

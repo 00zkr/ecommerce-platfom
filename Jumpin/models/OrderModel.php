@@ -107,5 +107,40 @@ class OrderModel {
         $stmt->bind_param("iiid", $order_id, $product_id, $quantity, $price_at_time_of_order);
         $stmt->execute();
     }
+
+    public function getOrdersByUserId($user_id) {
+        $sql = "SELECT * FROM orders WHERE user_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $orders = [];
+        while ($order = $result->fetch_assoc()) {
+            $order_id = $order['order_id'];
+            $order['items'] = $this->getOrderItemsWithProductNames($order_id); // <-- This adds the "items" key
+            $orders[] = $order;
+        }
+        return $orders;
+    }
+    
+    private function getOrderItemsWithProductNames($order_id) {
+        $sql = "SELECT oi.*, p.name as product_name
+                FROM order_items oi
+                JOIN products p ON oi.product_id = p.product_id
+                WHERE oi.order_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $order_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    
+        $items = [];
+        while ($row = $result->fetch_assoc()) {
+            $items[] = $row;
+        }
+        return $items;
+    }
+    
+    
 }
 ?>

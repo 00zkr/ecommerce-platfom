@@ -7,10 +7,10 @@
   <title>jumpin - jump into it</title>
 
   <!-- Favicon  -->
-  <link rel="icon" href="img/core-img/favicon.ico">
+  <link rel="icon" href="../public/img/core-img/favicon.ico">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/register.css" />
+  <link rel="stylesheet" href="../public/css/register.css" />
 </head>
 
 <body class="d-flex align-items-center justify-content-center min-vh-100 bg-light">

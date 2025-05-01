@@ -46,5 +46,8 @@ $total = $cartItemModel->getTotalCartValue($cart['cart_id']);
             </tr>
         </tfoot>
     </table>
+    <div class="checkout-btn">
+    <a href="checkout.php" class="btn btn-primary">Proceed to Checkout</a>
+</div>
 </div>
 <?php include '../includes/footer.php';?>

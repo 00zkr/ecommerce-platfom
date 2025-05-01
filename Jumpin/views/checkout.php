@@ -1,4 +1,22 @@
-<?php include '../includes/header.php'; ?>
+<?php
+include '../includes/header.php';
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+$user_id = $_SESSION['user_id'];
+
+require_once '../config/database.php'; // contains $conn = new mysqli(...);
+require_once '../models/CartModel.php';
+require_once '../models/CartItemModel.php';
+
+
+$cartModel = new CartModel($conn);
+$cartItemModel = new CartItemModel($conn);
+$cart = $cartModel->getCartByUser($user_id);
+$items = $cartItemModel->getCartItems($cart['cart_id']);
+$total = $cartItemModel->getTotalCartValue($cart['cart_id']);
+?>
 
     <!-- ##### Breadcumb Area Start ##### -->
     <div class="breadcumb_area bg-img" style="background-image: url(../public/img/bg-img/breadcumb.jpg);">
@@ -26,20 +44,9 @@
                             <h5>Billing Address</h5>
                         </div>
 
-                        <form action="#" method="post">
+                        <form action="../controllers/PlaceOrder.php" method="post">
                             <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="first_name">First Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="first_name" value="" required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="last_name">Last Name <span>*</span></label>
-                                    <input type="text" class="form-control" id="last_name" value="" required>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="company">Company Name</label>
-                                    <input type="text" class="form-control" id="company" value="">
-                                </div>
+                                
                                 <div class="col-12 mb-3">
                                     <label for="country">Country <span>*</span></label>
                                     <select class="w-100" id="country">
@@ -51,49 +58,27 @@
                                         <option value="aus">Australia</option>
                                         <option value="bra">Brazil</option>
                                         <option value="cana">Canada</option>
+                                        <option value="mrc">Morocco</option>
                                     </select>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="street_address">Address <span>*</span></label>
-                                    <input type="text" class="form-control mb-3" id="street_address" value="">
-                                    <input type="text" class="form-control" id="street_address2" value="">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="postcode">Postcode <span>*</span></label>
-                                    <input type="text" class="form-control" id="postcode" value="">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="city">Town/City <span>*</span></label>
-                                    <input type="text" class="form-control" id="city" value="">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <label for="state">Province <span>*</span></label>
-                                    <input type="text" class="form-control" id="state" value="">
+                                    <input type="text" class="form-control mb-3" id="street_address" value="" requireed>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="phone_number">Phone No <span>*</span></label>
-                                    <input type="number" class="form-control" id="phone_number" min="0" value="">
+                                    <input type="number" class="form-control" id="phone_number" min="0" value="" required>
                                 </div>
-                                <div class="col-12 mb-4">
-                                    <label for="email_address">Email Address <span>*</span></label>
-                                    <input type="email" class="form-control" id="email_address" value="">
-                                </div>
+
 
                                 <div class="col-12">
                                     <div class="custom-control custom-checkbox d-block mb-2">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1" required>
                                         <label class="custom-control-label" for="customCheck1">Terms and conitions</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox d-block mb-2">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                        <label class="custom-control-label" for="customCheck2">Create an accout</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox d-block">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                        <label class="custom-control-label" for="customCheck3">Subscribe to our newsletter</label>
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" class="btn essence-btn">Place Order</button>
                         </form>
                     </div>
                 </div>
@@ -107,11 +92,12 @@
                         </div>
 
                         <ul class="order-details-form mb-4">
-                            <li><span>Product</span> <span>Total</span></li>
-                            <li><span>Cocktail Yellow dress</span> <span>$59.90</span></li>
-                            <li><span>Subtotal</span> <span>$59.90</span></li>
-                            <li><span>Shipping</span> <span>Free</span></li>
-                            <li><span>Total</span> <span>$59.90</span></li>
+
+                        <li><span>Product</span> <span>Quantity</span> <span>Total</span></li>
+                        <?php foreach ($items as $item): ?>
+                            <li><span><?= htmlspecialchars($item['name']) ?></span> <span><?= $item['quantity'] ?></span> <span><?= number_format($item['price'] * $item['quantity'], 2) ?></span></li>
+                        <?php endforeach; ?>
+                            <li><span>Total</span> <span></span> <span><?= number_format($total, 2) ?></span></li>
                         </ul>
 
                         <div id="accordion" role="tablist" class="mb-4">
@@ -122,11 +108,6 @@
                                     </h6>
                                 </div>
 
-                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
-                                    </div>
-                                </div>
                             </div>
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingTwo">
@@ -134,22 +115,13 @@
                                         <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
                                     </h6>
                                 </div>
-                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore, tempore provident dignissimos.</p>
-                                    </div>
-                                </div>
+
                             </div>
                             <div class="card">
                                 <div class="card-header" role="tab" id="headingThree">
                                     <h6 class="mb-0">
                                         <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"><i class="fa fa-circle-o mr-3"></i>credit card</a>
                                     </h6>
-                                </div>
-                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quo sint repudiandae suscipit ab soluta delectus voluptate, vero vitae</p>
-                                    </div>
                                 </div>
                             </div>
                             <div class="card">
@@ -158,15 +130,9 @@
                                         <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour"><i class="fa fa-circle-o mr-3"></i>direct bank transfer</a>
                                     </h6>
                                 </div>
-                                <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est cum autem eveniet saepe fugit, impedit magni.</p>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
-
-                        <a href="#" class="btn essence-btn">Place Order</a>
                     </div>
                 </div>
             </div>

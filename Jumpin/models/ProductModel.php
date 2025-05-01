@@ -84,5 +84,17 @@ class ProductModel {
         $stmt->execute();
         return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
     }
+
+    // 10. Get Products by Brand
+public function getProductsByBrand($brand_id) {
+    $sql = "SELECT p.*, b.name AS brand_name 
+            FROM Products p
+            JOIN Brands b ON p.brand_id = b.brand_id
+            WHERE b.brand_id = ?";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->bind_param("i", $brand_id);
+    $stmt->execute();
+    return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+}
 }
 ?>

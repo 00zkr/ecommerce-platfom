@@ -13,7 +13,7 @@
   <div class="card p-4 shadow login-card">
     <h5 class="text-center mb-4 fw-bold">Login to your account</h5>
     
-    <form method="post" action="../backend/config/login.php">
+    <form method="post" action="../config/login.php">
       <div class="mb-3">
         <label class="form-label text-muted">Username</label>
         <input type="text" class="form-control" placeholder="Enter your username" name="userName">

@@ -25,9 +25,9 @@ $user = $result->fetch_assoc();
     <meta charset="UTF-8">
     <title>Profile</title>
     <!-- Include Bootstrap or your CSS here -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/style.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="../public/bootstrap.min.css">
 </head>
 <body>
 
@@ -65,8 +65,8 @@ $user = $result->fetch_assoc();
 </footer>
 
 <!-- Bootstrap JS -->
-<script src="jquery.min.js"></script>
-<script src="bootstrap.bundle.min.js"></script>
+<script src="../public/jquery.min.js"></script>
+<script src="../public/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

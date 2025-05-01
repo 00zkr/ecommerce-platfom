@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>jumpin - jump into it</title>
-  <link rel="icon" href="img/core-img/favicon.ico">
+  <link rel="icon" href="../public/img/core-img/favicon.ico">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="./css/login.css" />
+  <link rel="stylesheet" href="../public/css/login.css" />
 </head>
 
 <body class="d-flex align-items-center justify-content-center min-vh-100 bg-light">

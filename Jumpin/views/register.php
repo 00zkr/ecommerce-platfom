@@ -16,7 +16,7 @@
 <body class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
   <div class="card p-4 shadow login-card">
     <h5 class="text-center mb-4 fw-bold">Create an account</h5>
-    <form  method="post" action="../backend/config/register.php">
+    <form  method="post" action="../config/register.php">
       <div class="mb-3">
         <label class="form-label text-muted">Username</label>
         <input type="text" class="form-control" name="Username" placeholder="userName">

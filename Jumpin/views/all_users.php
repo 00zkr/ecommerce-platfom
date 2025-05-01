@@ -1,5 +1,5 @@
 <?php
-include '../includes/header.php';
+include '../includes/admin_header.php';
 require_once '../config/database.php';
 
 $sql = "SELECT user_id, username, email, full_name, phone, role, created_at FROM users";
@@ -37,4 +37,4 @@ $result = $conn->query($sql);
   </table>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/admin_footer.php'; ?>

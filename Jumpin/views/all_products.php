@@ -1,5 +1,5 @@
 <?php
-include '../includes/header.php';
+include '../includes/admin_header.php';
 require_once '../config/database.php';
 
 $sql = "SELECT product_id, name, price, size, stock_quantity, imageName1, imageName2, brand_id FROM products";
@@ -39,4 +39,4 @@ $result = $conn->query($sql);
   </table>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/admin_footer.php'; ?>

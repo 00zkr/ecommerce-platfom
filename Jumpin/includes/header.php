@@ -76,13 +76,8 @@ session_start();
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.php">Home</a></li>
-                                    <li><a href="shop.php">Shop</a></li>
-                                    <li><a href="contact.php">Contact</a></li>
-                                </ul>
-                            </li>
+                            <li><a href="cart.php">cart</a></li>
+                            <li><a href="orders.php">orders</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->

@@ -14,6 +14,7 @@ CREATE TABLE Users (
 CREATE TABLE Products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     vendor_id INT,
+    brand_id INT,
     name VARCHAR(255) NOT NULL,
     description TEXT,
     price DECIMAL(10, 2) NOT NULL,
@@ -22,7 +23,8 @@ CREATE TABLE Products (
     imageName1 VARCHAR(255),
     imageName2 VARCHAR(255),
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (vendor_id) REFERENCES Users(user_id)
+    FOREIGN KEY (vendor_id) REFERENCES Users(user_id),
+    FOREIGN KEY (brand_id) REFERENCES Brands(brand_id)
 );
 
 
@@ -91,11 +93,11 @@ INSERT INTO Brands (name) VALUES
 ('Nike'),
 ('Puma');
 
-INSERT INTO Products (vendor_id, name, description, price, size, stock_quantity, imageName1, imageName2, created_at)
+INSERT INTO Products (vendor_id, brand_id, name ,description, price, size, stock_quantity, imageName1, imageName2, created_at)
 VALUES
-(4, 'Adidas Ultraboost 22', 'High-performance running shoe.', 180.00, '42', 50, 'ultraboost1.jpg', 'ultraboost2.jpg', NOW()),
-(5, 'Nike Air Max 270', 'Lightweight shoe with visible air unit.', 160.00, '43', 40, 'airmax1.jpg', 'airmax2.jpg', NOW()),
-(6, 'Puma RS-X3 Puzzle', 'Bold design sneaker for daily wear.', 120.00, '41', 60, 'rsx1.jpg', 'rsx2.jpg', NOW());
+(4, 1, 'Adidas Ultraboost 22', 'High-performance running shoe.', 180.00, '42', 50, 'ultraboost1.jpg', 'ultraboost2.jpg', NOW()),
+(5, 2, 'Nike Air Max 270', 'Lightweight shoe with visible air unit.', 160.00, '43', 40, 'airmax1.jpg', 'airmax2.jpg', NOW()),
+(6, 3, 'Puma RS-X3 Puzzle', 'Bold design sneaker for daily wear.', 120.00, '41', 60, 'rsx1.jpg', 'rsx2.jpg', NOW());
 
 INSERT INTO Inventory (product_id, vendor_id, stock_quantity)
 VALUES

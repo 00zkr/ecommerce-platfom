@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'] ?? '';
 
     // Create a new controller instance and call loginUser method
-    $controller = new LoginController($mysqli);
+    $controller = new LoginController($conn);
     $controller->loginUser($username, $password);
 }
 ?>

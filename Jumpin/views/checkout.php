@@ -44,7 +44,7 @@ $total = $cartItemModel->getTotalCartValue($cart['cart_id']);
                             <h5>Billing Address</h5>
                         </div>
 
-                        <form action="#" method="post">
+                        <form action="../controllers/PlaceOrder.php" method="post">
                             <div class="row">
                                 
                                 <div class="col-12 mb-3">
@@ -63,11 +63,11 @@ $total = $cartItemModel->getTotalCartValue($cart['cart_id']);
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="street_address">Address <span>*</span></label>
-                                    <input type="text" class="form-control mb-3" id="street_address" value="">
+                                    <input type="text" class="form-control mb-3" id="street_address" value="" requireed>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="phone_number">Phone No <span>*</span></label>
-                                    <input type="number" class="form-control" id="phone_number" min="0" value="">
+                                    <input type="number" class="form-control" id="phone_number" min="0" value="" required>
                                 </div>
 
 
@@ -78,6 +78,7 @@ $total = $cartItemModel->getTotalCartValue($cart['cart_id']);
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" class="btn essence-btn">Place Order</button>
                         </form>
                     </div>
                 </div>
@@ -132,8 +133,6 @@ $total = $cartItemModel->getTotalCartValue($cart['cart_id']);
 
                             </div>
                         </div>
-
-                        <a href="#" class="btn essence-btn">Place Order</a>
                     </div>
                 </div>
             </div>

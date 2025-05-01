@@ -8,10 +8,9 @@ class UserModel {
 
     // 1. Create User
     public function createUser($username, $email, $password, $full_name, $phone, $role = 'client') {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);  // Hash the password
         $sql = "INSERT INTO Users (username, email, password, full_name, phone, role) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("ssssss", $username, $email, $hashed_password, $full_name, $phone, $role);
+        $stmt->bind_param("ssssss", $username, $email, $password, $full_name, $phone, $role);
         return $stmt->execute();
     }
 
@@ -93,7 +92,7 @@ class UserModel {
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
 
-        if ($result && password_verify($password, $result['password'])) {
+        if ($result && $password==$result['password']) {
             return $result;  // Return user data if authenticated
         }
         return null;  // Return null if authentication fails

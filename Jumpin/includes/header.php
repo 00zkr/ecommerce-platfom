@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,6 +27,11 @@ session_start();
 <body>
     <!-- ##### Header Area Start ##### -->
     <header class="header_area">
+    <?php if (isset($_GET['message'])): ?>
+    <div class="alert alert-success text-center">
+        <?= htmlspecialchars($_GET['message']) ?>
+    </div>
+    <?php endif; ?>
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
@@ -99,7 +105,7 @@ session_start();
                     <div class="dropdown-menu" aria-labelledby="userDropdown">
                         <?php if (isset($_SESSION['user_id'])): ?>
                             <a class="dropdown-item" href="profile.php">Profile</a>
-                            <a class="dropdown-item" href="../backend/config/logout.php">Logout</a>
+                            <a class="dropdown-item" href="../controllers/LogoutController.php">Logout</a>
                         <?php else: ?>
                             <a class="dropdown-item" href="register.php">Register</a>
                             <a class="dropdown-item" href="login.php">Login</a>

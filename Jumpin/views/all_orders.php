@@ -1,5 +1,5 @@
 <?php
-include '../includes/header.php';
+include '../includes/admin_header.php';
 
 require_once '../config/database.php'; // Your DB connection
 require_once '../models/OrderModel.php';
@@ -46,4 +46,4 @@ $orders = $orderModel->getAllOrdersWithItems();
     </div>
   <?php endforeach; ?>
 </div>
-<?php include '../includes/footer.php';?>
+<?php include '../includes/admin_footer.php';?>

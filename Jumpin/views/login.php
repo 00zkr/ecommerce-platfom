@@ -12,8 +12,14 @@
 <body class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
   <div class="card p-4 shadow login-card">
     <h5 class="text-center mb-4 fw-bold">Login to your account</h5>
-    
-    <form method="post" action="../config/login.php">
+    <!-- Display error message if it exists -->
+    <?php if (isset($_GET['error'])): ?>
+      <div class="alert alert-danger" role="alert">
+        <?php echo htmlspecialchars($_GET['error']);?>
+      </div>
+    <?php endif; ?>
+
+    <form method="post" action="../controllers/LoginController.php?action=loginUser">
       <div class="mb-3">
         <label class="form-label text-muted">Username</label>
         <input type="text" class="form-control" placeholder="Enter your username" name="userName">

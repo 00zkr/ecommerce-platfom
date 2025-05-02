@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'client') {
+    header("Location: login.php");
+    exit();
+}
 include '../includes/header.php';
 
 require_once '../config/database.php'; // Your DB connection

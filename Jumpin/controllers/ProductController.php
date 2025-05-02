@@ -11,7 +11,7 @@ class ProductController {
 
     public function getProductDetails($productId) {
         // Get product details with the brand
-        $product = $this->productModel->getProductWithBrand($productId);
+        $product = $this->productModel->getProductById($productId);
 
         if ($product) {
             return $product;  // Return product details to the view

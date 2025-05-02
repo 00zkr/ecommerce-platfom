@@ -28,7 +28,7 @@ $stmt->close();
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="page-title text-center">
-                    <h2>Dresses</h2>
+                    <h2>Sneakers</h2>
                 </div>
             </div>
         </div>
@@ -55,9 +55,6 @@ $stmt->close();
                                         <li><a href="#">Reebok</a></li>
                                         <li><a href="#">New Balance</a></li>
                                         <li><a href="#">Converse</a></li>
-                                        <li><a href="#">Vans</a></li>
-                                        <li><a href="#">Under Armour</a></li>
-                                        <li><a href="#">Dr. Martens</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -97,34 +94,23 @@ $stmt->close();
                                     <div class="product-img">
                                         <img src="../public/img/product-img/<?= htmlspecialchars($product['imageName1']) ?>" alt="">
                                         <img class="hover-img" src="../public/img/product-img/<?= htmlspecialchars($product['imageName2']) ?>" alt="">
-
-                                        <?php if (!empty($product['old_price']) && $product['old_price'] > $product['price']): ?>
-                                            <div class="product-badge offer-badge">
-                                                <span>-<?= round((($product['old_price'] - $product['price']) / $product['old_price']) * 100) ?>%</span>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
-                                        </div>
                                     </div>
 
                                     <div class="product-description">
                                         <span><?= !empty($product['brand']) ? htmlspecialchars($product['brand']) : 'Generic Brand' ?></span>
-                                        <a href="single-product-details.php?id=<?= $product['product_id'] ?>">
+                                        <a href="single-product-details.php?product_id=<?= $product['product_id'] ?>">
                                             <h6><?= htmlspecialchars($product['name']) ?></h6>
                                         </a>
                                         <p class="product-price">
-                                            <?php if (!empty($product['old_price']) && $product['old_price'] > $product['price']): ?>
-                                                <span class="old-price">$<?= $product['old_price'] ?></span>
-                                            <?php endif; ?>
                                             $<?= $product['price'] ?>
                                         </p>
-                                        <div class="hover-content">
+                                        <form action="../controllers/AddToCart.php" method="post">
+                                            <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
+                                            <input type="number" name="quantity" value="1" min="1" required> <!-- Added quantity input -->
                                             <div class="add-to-cart-btn">
-                                                <a href="add-to-cart.php?id=<?= $product['product_id'] ?>" class="btn essence-btn">Add to Cart</a>
+                                                <button type="submit" name="add_to_cart" class="btn essence-btn">Add to Cart</button>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

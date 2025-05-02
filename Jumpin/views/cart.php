@@ -25,6 +25,11 @@ require_once '../models/CartItemModel.php';
 $cartModel = new CartModel($conn);
 $cartItemModel = new CartItemModel($conn);
 $cart = $cartModel->getCartByUser($user_id);
+if (!$cart) {
+    echo "<p>Your cart is empty.</p>";
+    include '../includes/footer.php';
+    exit();
+}
 $items = $cartItemModel->getCartItems($cart['cart_id']);
 $total = $cartItemModel->getTotalCartValue($cart['cart_id']);
 ?>

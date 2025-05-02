@@ -7,8 +7,8 @@
                 <div class="col-md-12 text-center">
                     <p>
                         Project made by:
-                    </p><br>
-                    <p>Zakaria,Taha,Hassan</p>
+                    </p>
+                    <p>Taha Hassan Zakaria</p>
                 </div>
             </div>
 

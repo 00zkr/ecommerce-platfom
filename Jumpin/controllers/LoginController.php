@@ -20,8 +20,19 @@ class LoginController {
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
 
-            // Redirect to the home page or dashboard based on user role
-            header("Location: ../views/index.php");
+            switch ($user['role']) {
+                case 'client':
+                    header("Location: ../views/index.php?message=Logged in successfully");
+                    break;
+                case 'vendor':
+                    header("Location: ../views/vendor_products.php?message=Logged in successfull");
+                    break;
+                case 'admin':
+                    header("Location: ../views/all_products.php?message=Logged in successfull");
+                    break;
+                default:
+                    header("Location: ../views/login.php?error=Unknown role");
+            }
             exit();
         } else {
             // Login failed: Redirect back with error message

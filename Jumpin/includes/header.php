@@ -26,6 +26,29 @@
             object-fit: cover; 
             object-position: bottom; /* This ensures images maintain their aspect ratio */
         }
+
+        .product-img img {
+            width: 100%;  /* Makes the images responsive */
+            height: 300px;  /* Fixed height to maintain uniformity */
+            object-fit: cover;  /* Maintain aspect ratio and crop the excess */
+        }
+
+        /* Ensure the product container maintains the same size */
+        .single-product-wrapper {
+            width: 100%;
+            max-width: 300px;  /* Fixed width for each product container */
+            margin: 0 auto;  /* Center the products */
+        }
+        .popular-products-slides {
+            display: flex;
+            justify-content: space-around; /* Distribute items evenly */
+            flex-wrap: wrap;  /* Wrap the items to the next line if needed */
+        }
+
+        .single-product-wrapper {
+            margin-bottom: 20px;  /* Space between products */
+        }
+
     </style>
 
 </head>
@@ -56,10 +79,9 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="shop.php">Shop</a></li>
+                            <li><a href="shop.php">Catalog</a></li>
                             <li><a href="cart.php">cart</a></li>
                             <li><a href="orders.php">orders</a></li>
-                            <li><a href="contact.php">Catalog</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -93,7 +115,7 @@
                 
                 <!-- Cart Area -->
                 <div class="cart-area">
-                    <a href="../views/cart.php" id="essenceCartBtn"><img src="../public/img/core-img/bag.svg" alt=""> <span>3</span></a>
+                    <a href="../views/cart.php" id="essenceCartBtn"><img src="../public/img/core-img/bag.svg" alt=""></a>
                 </div>
             </div>
 

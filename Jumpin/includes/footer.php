@@ -12,8 +12,9 @@
                         <!-- Footer Menu -->
                         <div class="footer_menu">
                             <ul>
-                                <li><a href="shop.php">Shop</a></li>
-                                <li><a href="contact.php">Contact</a></li>
+                            <li><a href="shop.php">Catalog</a></li>
+                            <li><a href="cart.php">cart</a></li>
+                            <li><a href="orders.php">orders</a></li>s
                             </ul>
                         </div>
                     </div>
@@ -23,8 +24,8 @@
                 <div class="col-md-12 text-center">
                     <p>
                         Project made by:
-                    </p><br>
-                    <p>Zakaria,Taha,Hassan</p>
+                    </p>
+                    <p>Taha Hassan Zakaria</p>
                 </div>
             </div>
 

@@ -1,4 +1,6 @@
-<?php include '../includes/header.php'; ?>
+<?php 
+session_start();
+include '../includes/header.php'; ?>
 
     <div class="contact-area d-flex align-items-center">
 

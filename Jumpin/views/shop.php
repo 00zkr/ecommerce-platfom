@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../includes/header.php';
 include '../config/database.php';
 
@@ -110,7 +111,7 @@ $stmt->close();
 
                                     <div class="product-description">
                                         <span><?= !empty($product['brand']) ? htmlspecialchars($product['brand']) : 'Generic Brand' ?></span>
-                                        <a href="single-product-details.php?product_id=<?= $product['product_id'] ?>">
+                                        <a href="single-product-details.php?id=<?= $product['product_id'] ?>">
                                             <h6><?= htmlspecialchars($product['name']) ?></h6>
                                         </a>
                                         <p class="product-price">

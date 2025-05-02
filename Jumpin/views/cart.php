@@ -1,10 +1,21 @@
 <?php
-include '../includes/header.php';
-if (!isset($_SESSION['user_id'])) {
+
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'client') {
     header("Location: login.php");
-    exit;
+    exit();
 }
+
+include '../includes/header.php';
+
+
+
 $user_id = $_SESSION['user_id'];
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'client') {
+    header("Location: login.php");
+    exit();
+}
 
 require_once '../config/database.php'; // contains $conn = new mysqli(...);
 require_once '../models/CartModel.php';

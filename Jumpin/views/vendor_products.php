@@ -1,8 +1,18 @@
 <?php
+session_start();
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'vendor') {
+    header("Location: login.php");
+    exit();
+}
 include '../includes/vendor_header.php';
 require_once '../config/database.php';
 
 $vendor_id = $_SESSION['user_id'];
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'vendor') {
+    header("Location: login.php");
+    exit();
+}
 
 $sql = "SELECT product_id, name, price, size, stock_quantity, imageName1, imageName2, brand_id 
         FROM products 

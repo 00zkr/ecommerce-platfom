@@ -43,9 +43,6 @@ include '../config/database.php';
                         <div class="product-img">
                             <img src="../public/img/product-img/<?php echo $row['imageName1']; ?>" alt="">
                             <img class="hover-img" src="../public/img/product-img/<?php echo $row['imageName2']; ?>" alt="">
-                            <div class="product-favourite">
-                                <a href="#" class="favme fa fa-heart"></a>
-                            </div>
                         </div>
                         <div class="product-description">
                             <span><?php echo $row['brand_id']; ?></span>

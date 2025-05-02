@@ -62,7 +62,7 @@ if (isset($_POST['add_to_cart'])) {
     $stmt->execute();
 
     // Redirect to the cart page or show a success message
-    header("Location: ../views/index.php");
+    header("Location: ../views/index.php?message=Added to cart");
     exit();
 }
 ?>

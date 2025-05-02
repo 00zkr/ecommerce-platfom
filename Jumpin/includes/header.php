@@ -19,6 +19,14 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="../public/css/core-style.css">
     <link rel="stylesheet" href="../public/style.css">
+    <style>
+        .product-image {
+            width: 300px;  /* Adjust this value as needed */
+            height: 600px;  /* Maintain aspect ratio */
+            object-fit: cover; 
+            object-position: bottom; /* This ensures images maintain their aspect ratio */
+        }
+    </style>
 
 </head>
 
@@ -48,33 +56,10 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="#">Shop</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Brands</li>
-                                        <li><a href="shop.php">Nike</a></li>
-                                        <li><a href="shop.php">Adidas </a></li>
-                                        <li><a href="shop.php">Puma</a></li>
-                                        <li><a href="shop.php">Reebok</a></li>
-                                        <li><a href="shop.php">New Balance</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">&nbsp;</li>
-                                        <li><a href="shop.php">Converse</a></li>
-                                        <li><a href="shop.php">Vans</a></li>
-                                        <li><a href="shop.php">Under Armour</a></li>
-                                        <li><a href="shop.php">Under Armour</a></li>
-                                        <li><a href="shop.php">Dr. Martens</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4"></ul>
-
-                                    <div class="single-mega cn-col-4 align-left-image" >
-                                        <img src="../public/img/bg-img/bg-6.jpg"  alt="" >
-                                    </div>
-                                </div>
-                            </li>
+                            <li><a href="shop.php">Shop</a></li>
                             <li><a href="cart.php">cart</a></li>
                             <li><a href="orders.php">orders</a></li>
+                            <li><a href="contact.php">Catalog</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->

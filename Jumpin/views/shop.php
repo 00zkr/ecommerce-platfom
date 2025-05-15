@@ -3,6 +3,10 @@ session_start();
 include '../includes/header.php';
 include '../config/database.php';
 
+// Fetch brands from DB
+$brands_result = $db->query("SELECT name FROM brands ORDER BY name ASC");
+$brands = $brands_result->fetch_all(MYSQLI_ASSOC);
+$brands_result->close();
 // Pagination setup
 $limit = 9;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
@@ -45,19 +49,12 @@ $stmt->close();
                     <div class="widget catagory mb-50">
                         <h6 class="widget-title mb-30">Categories</h6>
                         <div class="catagories-menu">
-                            <ul class="menu-content collapse show">
-                                <li>
-                                    <a href="#" style="color: black; font-size:small;">Brands</a>
-                                    <ul class="sub-menu collapse show">
-                                        <li><a href="#">Nike</a></li>
-                                        <li><a href="#">Adidas</a></li>
-                                        <li><a href="#">Puma</a></li>
-                                        <li><a href="#">Reebok</a></li>
-                                        <li><a href="#">New Balance</a></li>
-                                        <li><a href="#">Converse</a></li>
-                                    </ul>
-                                </li>
+                            <ul class="sub-menu collapse show">
+                                <?php foreach ($brands as $brand): ?>
+                                    <li><a href="?brand=<?= urlencode($brand['name']) ?>"><?= htmlspecialchars($brand['name']) ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
+
                         </div>
                     </div>
                 </div>

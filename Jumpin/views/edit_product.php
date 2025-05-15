@@ -1,4 +1,4 @@
-<?php include '../includes/header.php'; ?>
+<?php include '../includes/admin_header.php'; ?>
 
 <div class="container mt-5 mb-3">
     <h2>Edit Product #<?= htmlspecialchars($product['product_id']) ?></h2>
@@ -51,4 +51,4 @@
 <!-- Optional Bootstrap JS if needed -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<?php include '../includes/footer.php'; ?>
+<?php include '../includes/admin_footer.php'; ?>

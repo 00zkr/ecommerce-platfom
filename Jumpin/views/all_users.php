@@ -13,7 +13,7 @@ $result = $conn->query($sql);
 
 <div class="container">
   <h2 class="mb-4">All Users</h2>
-
+  <a href="../controllers/AddUser.php" class="btn btn-success mb-3">Add User</a>
   <table class="table table-bordered">
     <thead class="table-dark text-white">
       <tr>
@@ -24,6 +24,7 @@ $result = $conn->query($sql);
         <th>Phone</th>
         <th>Role</th>
         <th>Created At</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +37,10 @@ $result = $conn->query($sql);
           <td><?= htmlspecialchars($row['phone']) ?></td>
           <td><?= $row['role'] ?></td>
           <td><?= $row['created_at'] ?></td>
+          <td>
+            <a href="../controllers/EditUser.php?id=<?= $row['user_id'] ?>" class="btn btn-warning">Edit</a>
+            <a href="../controllers/DeleteUser.php?id=<?= $row['user_id'] ?>" class="btn btn-danger">Delete</a>
+          </td>
         </tr>
       <?php endwhile; ?>
     </tbody>

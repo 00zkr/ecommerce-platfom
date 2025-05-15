@@ -1,4 +1,4 @@
-<?php include '../includes/header.php'; ?>
+<?php include '../includes/admin_header.php'; ?>
 
 <div class="container mt-5 mb-3" style="max-width: 600px;">
   <h2 class="mb-4">Add New Product</h2>

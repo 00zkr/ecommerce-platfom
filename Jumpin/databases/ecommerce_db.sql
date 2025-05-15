@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2025 at 05:26 PM
+-- Generation Time: May 15, 2025 at 02:02 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,7 +60,11 @@ CREATE TABLE `cart` (
 INSERT INTO `cart` (`cart_id`, `user_id`, `created_at`) VALUES
 (1, 1, '2025-05-01 04:38:28'),
 (2, 2, '2025-05-01 04:38:28'),
-(3, 3, '2025-05-01 04:38:28');
+(3, 3, '2025-05-01 04:38:28'),
+(4, 4, '2025-05-01 23:52:44'),
+(5, 13, '2025-05-02 04:32:10'),
+(6, 14, '2025-05-02 09:30:02'),
+(7, 15, '2025-05-02 10:52:07');
 
 -- --------------------------------------------------------
 
@@ -80,10 +84,9 @@ CREATE TABLE `cart_items` (
 --
 
 INSERT INTO `cart_items` (`cart_item_id`, `cart_id`, `product_id`, `quantity`) VALUES
-(1, 1, 1, 10),
 (2, 2, 2, 1),
 (3, 3, 3, 3),
-(4, 1, 2, 4);
+(25, 7, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -128,7 +131,15 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_id`, `user_id`, `order_date`, `total_amount`, `status`) VALUES
 (1, 1, '2025-05-01 04:38:28', 300.00, 'pending'),
 (2, 2, '2025-05-01 04:38:28', 500.00, 'completed'),
-(3, 3, '2025-05-01 04:38:28', 700.00, 'shipped');
+(3, 3, '2025-05-01 04:38:28', 700.00, 'shipped'),
+(4, 1, '2025-05-01 23:51:52', 1420.00, 'pending'),
+(5, 4, '2025-05-01 23:52:53', 78.00, 'pending'),
+(6, 1, '2025-05-02 03:38:37', 708.00, 'pending'),
+(7, 13, '2025-05-02 04:32:17', 156.00, 'pending'),
+(8, 1, '2025-05-02 08:43:59', 1465.00, 'pending'),
+(9, 14, '2025-05-02 09:30:39', 300.00, 'pending'),
+(10, 15, '2025-05-02 10:52:54', 238.00, 'pending'),
+(11, 1, '2025-05-15 00:07:16', 478.00, 'pending');
 
 -- --------------------------------------------------------
 
@@ -151,7 +162,24 @@ CREATE TABLE `order_items` (
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`, `price_at_time_of_order`) VALUES
 (1, 1, 1, 1, 180.00),
 (2, 2, 2, 2, 160.00),
-(3, 3, 3, 1, 120.00);
+(3, 3, 3, 1, 120.00),
+(4, 4, 1, 10, 78.00),
+(5, 4, 2, 4, 160.00),
+(6, 5, 1, 1, 78.00),
+(7, 6, 1, 4, 78.00),
+(8, 6, 19, 4, 99.00),
+(9, 7, 1, 2, 78.00),
+(10, 8, 1, 5, 78.00),
+(11, 8, 3, 2, 120.00),
+(12, 8, 4, 2, 80.00),
+(13, 8, 9, 1, 75.00),
+(14, 8, 10, 2, 300.00),
+(15, 9, 5, 3, 100.00),
+(16, 10, 4, 2, 80.00),
+(17, 10, 1, 1, 78.00),
+(18, 11, 1, 1, 78.00),
+(19, 11, 4, 2, 80.00),
+(20, 11, 3, 2, 120.00);
 
 -- --------------------------------------------------------
 
@@ -178,9 +206,25 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `vendor_id`, `brand_id`, `name`, `description`, `price`, `size`, `stock_quantity`, `imageName1`, `imageName2`, `created_at`) VALUES
-(1, 4, 1, 'Adidas Ultraboost 22', 'High-performance running shoe.', 180.00, '42', 50, 'product-big-1.jpg', 'product-big-1.jpg', '2025-05-01 04:38:28'),
-(2, 5, 2, 'Nike Air Max 270', 'Lightweight shoe with visible air unit.', 160.00, '43', 40, 'airmax1.jpg', 'airmax2.jpg', '2025-05-01 04:38:28'),
-(3, 6, 3, 'Puma RS-X3 Puzzle', 'Bold design sneaker for daily wear.', 120.00, '41', 60, 'rsx1.jpg', 'rsx2.jpg', '2025-05-01 04:38:28');
+(1, 4, 1, ' Fila Kreatix', ' Fila Kreatix\r\nType : Lifestyle / Streetwear', 78.00, '38-42', 50, 'product-7.1.jpg', 'product-7.2.jpg', '2025-05-01 04:38:28'),
+(2, 5, 2, 'Fila Rega', ' Fila Rega \r\nType : Sneakers basses pour homme / Lifestyle', 160.00, '37-43', 40, 'product-8.2.jpg', 'product-8.1.jpg', '2025-05-01 04:38:28'),
+(3, 6, 3, 'Air Force 1', 'Nike Air Force 1\r\nType : Lifestyle / Running', 120.00, '38-45', 60, 'product-9.1.jpg', 'product-9.2.jpg', '2025-05-01 04:38:28'),
+(4, 4, NULL, 'Adidas Campus', 'Adidas Campus\r\nType : Lifestyle / Casual', 80.00, '39-44', 100, 'product-1.1.jpg', 'product-1.2.jpg', '2025-05-01 17:24:11'),
+(5, 5, NULL, 'Adidas Samba', 'Born on the football pitch, the Samba is now a timeless streetwear icon.', 100.00, '39-45', 58, 'product-2.1.jpg', 'product-2.2.jpg', '2025-05-01 17:46:08'),
+(6, 6, NULL, 'Adidas Stan Smith', 'Adidas Stan Smith\r\nType : Lifestyle / Classique intemporel\r\n', 99.00, '39-44', 15, 'product-3.1.jpg', 'product-3.2.jpg', '2025-05-01 18:03:23'),
+(7, 5, NULL, 'Adidas Super Star', 'Adidas Superstar\r\nType : Streetwear / Lifestyle\r\nÉditions spéciales (avec motifs, collaborations)', 99.00, '40-44', 120, 'product-4.1.jpg', 'product-4.2.jpg', '2025-05-01 18:08:16'),
+(8, 6, NULL, 'Fila Collene', 'Fila Collene CB WMN\r\nType : Sneakers basses / Lifestyle', 66.00, '36-41', 76, 'product-5.1.jpg', 'product-5.2.jpg', '2025-05-01 18:13:38'),
+(9, 4, NULL, 'Fila Courtbay', 'Fila Courtbay\r\nType : Lifestyle / Streetwear', 75.00, '35-45', 11, 'product-6.1.jpg', 'product-6.2.jpg', '2025-05-01 18:17:40'),
+(10, 4, NULL, 'Nike Air Max Plus TN', 'Nike Air Max Plus TN\r\nType : Streetwear / Lifestyle', 300.00, '36-46', 2, 'product-10.1.jpg', 'product-10.2.jpg', '2025-05-01 18:56:44'),
+(11, 6, NULL, 'Nike Dunk SB', 'Nike Dunk SB\r\nType : Skateboard / Streetwear', 149.00, '40-44', 34, 'product-11.1.jpg', 'product-11.2.jpg', '2025-05-01 19:00:02'),
+(12, 5, NULL, 'Nike Zoom', 'Nike Zoom\r\nType : Running / Training haute performance\r\n\r\n', 120.00, '38-42', 50, 'product-12.1.jpg', 'product-12.2.jpg', '2025-05-01 19:02:27'),
+(13, 6, NULL, 'Puma Doublecourt', 'Puma Doublecourt\r\nType : Lifestyle / Streetwear', 80.00, '36-41', 100, 'product-13.1.jpg', 'product-13.2.jpg', '2025-05-01 19:05:35'),
+(14, 4, NULL, 'Puma Morphic Base', 'Puma Morphic Base\r\nType : Lifestyle / Running rétro\r\n', 89.00, '39-44', 76, 'product-14.1.jpg', 'product-14.2.jpg', '2025-05-01 19:09:28'),
+(15, 6, NULL, 'Puma Speedcat', 'Puma Speedcat\r\nType : Motorsport / Lifestyle\r\n\r\n\r\n', 800.00, '35-45', 2, 'product-15.1.jpg', 'product-15.2.jpg', '2025-05-01 19:12:12'),
+(16, 4, NULL, 'Puma Suede Classic', 'Puma Suede Classic / Suede XL\r\nType : Lifestyle / Streetwear\r\n', 99.00, '35-45', 8, 'product-16.1.jpg', 'product-16.2.jpg', '2025-05-01 19:15:36'),
+(17, 4, NULL, ' Reebok Classic Leather', ' Reebok Classic Leather\r\nType : Lifestyle / Rétro\r\n', 44.00, '39-45', 10, 'product-17.1.jpg', 'product-17.2.jpg', '2025-05-01 19:19:08'),
+(18, 5, NULL, ' Reebok Club C 85', ' Reebok Club C 85\r\nType : Lifestyle / Tennis rétro', 145.00, '38-42', 100, 'product-18.1.jpg', 'product-18.2.jpg', '2025-05-01 19:22:51'),
+(19, 5, NULL, 'Reebok Zig Kinetica 21', 'Reebok Zig Kinetica 21\r\nType : Running / Lifestyle futuriste', 99.00, '39-44', 100, 'product-19.1.jpg', 'product19.2.jpg', '2025-05-01 19:28:11');
 
 -- --------------------------------------------------------
 
@@ -214,7 +258,11 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`, `full_name`, `p
 (8, 'test', 'z.rhendour9924@uca.ma', '$2y$10$jN3UxMJKu8w0sai44aBg6uR8yFhIKqzmBWelM5nFNAekRwbOxOaey', 'test', '', 'client', '2025-05-01 04:43:49'),
 (9, 'test1', 'z.rhendour99245@uca.ma', '$2y$10$bzQ3Js782qQNvUh8/.C1OeeE8wJlfqHH1NO.CHl0Jb67ILzwsa9Dq', 'test', '', 'client', '2025-05-01 04:44:28'),
 (10, 'test2', 'z.rhendour992456@uca.ma', '$2y$10$1POog8GDRPSpnAw7LtiedOWlNUDZJIy9k2ROWQOli06P3zkMHd36i', 'test', '', 'client', '2025-05-01 04:45:15'),
-(11, 'test3', 'zakariarhendour@gmail.com', '$2y$10$iPJ9y10oM1dWdcJnD9MFhegmQArlaL0ismWp5YB9eL9qeGF/kvqzC', 'test3', '', 'client', '2025-05-01 04:45:44');
+(11, 'test3', 'zakariarhendour@gmail.com', '$2y$10$iPJ9y10oM1dWdcJnD9MFhegmQArlaL0ismWp5YB9eL9qeGF/kvqzC', 'test3', '', 'client', '2025-05-01 04:45:44'),
+(12, 'tahtoh', 'm.majjati4521@uca.ac.ma', '123', 'mjt', '', 'client', '2025-05-01 16:56:44'),
+(13, 'axki', 'axki@gmail.com', 'axki', 'axkism', '', 'client', '2025-05-02 04:28:48'),
+(14, 'fati', 'f.bme@gmail.com', '123', 'fatif', '', 'client', '2025-05-02 09:28:40'),
+(15, 'ousssama', 'oussama@gmail.com', '123', 'oussama', '', 'client', '2025-05-02 10:50:07');
 
 --
 -- Indexes for dumped tables
@@ -292,13 +340,13 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cart_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `inventory`
@@ -310,25 +358,25 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

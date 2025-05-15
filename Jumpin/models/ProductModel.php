@@ -14,5 +14,6 @@ class ProductModel {
         return $stmt->get_result()->fetch_assoc();
     }
 
+
 }
 ?>

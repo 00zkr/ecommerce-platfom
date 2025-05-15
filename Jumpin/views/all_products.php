@@ -14,7 +14,7 @@ $result = $conn->query($sql);
 
 <div class="container">
   <h2 class="mb-4">All Products</h2>
-
+  <a href="../controllers/AddProduct.php" class="btn btn-success mb-3">Add Product</a>
   <table class="table table-bordered">
     <thead class="table-dark text-white">
       <tr>
@@ -26,6 +26,7 @@ $result = $conn->query($sql);
         <th>Image 1</th>
         <th>Image 2</th>
         <th>Brand ID</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -39,6 +40,10 @@ $result = $conn->query($sql);
           <td><?= htmlspecialchars($row['imageName1']) ?></td>
           <td><?= htmlspecialchars($row['imageName2']) ?></td>
           <td><?= $row['brand_id'] ?></td>
+          <td>
+            <a href="../controllers/EditProduct.php?id=<?= $row['product_id'] ?>" class="btn btn-warning">Edit</a>
+            <a href="../controllers/DeleteProduct.php?id=<?= $row['product_id'] ?>" class="btn btn-danger">Delete</a>
+          </td>
         </tr>
       <?php endwhile; ?>
     </tbody>

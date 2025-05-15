@@ -3,20 +3,44 @@ session_start();
 include '../includes/header.php';
 include '../config/database.php';
 
+// Fetch brands from DB
+$brands_result = $db->query("SELECT brand_id, name FROM brands ORDER BY name ASC");
+$brands = $brands_result->fetch_all(MYSQLI_ASSOC);
+$brands_result->close();
+
 // Pagination setup
 $limit = 9;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? intval($_GET['page']) : 1;
 $offset = ($page - 1) * $limit;
 
-// Count total products
-$result_count = $db->query("SELECT COUNT(*) AS total FROM products");
-$row_count = $result_count->fetch_assoc();
-$total_products = $row_count['total'];
+// Get selected brand from URL if exists
+$selected_brand = isset($_GET['brand']) && is_numeric($_GET['brand']) ? intval($_GET['brand']) : null;
+
+// Count total products (filtered if brand selected)
+if ($selected_brand) {
+    $stmt_count = $db->prepare("SELECT COUNT(*) AS total FROM products WHERE brand_id = ?");
+    $stmt_count->bind_param("i", $selected_brand);
+    $stmt_count->execute();
+    $result_count = $stmt_count->get_result();
+    $row_count = $result_count->fetch_assoc();
+    $total_products = $row_count['total'];
+    $stmt_count->close();
+} else {
+    $result_count = $db->query("SELECT COUNT(*) AS total FROM products");
+    $row_count = $result_count->fetch_assoc();
+    $total_products = $row_count['total'];
+}
+
 $total_pages = ceil($total_products / $limit);
 
-// Fetch products
-$stmt = $db->prepare("SELECT * FROM products LIMIT ?, ?");
-$stmt->bind_param("ii", $offset, $limit);
+// Fetch products filtered by brand if selected
+if ($selected_brand) {
+    $stmt = $db->prepare("SELECT * FROM products WHERE brand_id = ? LIMIT ?, ?");
+    $stmt->bind_param("iii", $selected_brand, $offset, $limit);
+} else {
+    $stmt = $db->prepare("SELECT * FROM products LIMIT ?, ?");
+    $stmt->bind_param("ii", $offset, $limit);
+}
 $stmt->execute();
 $products = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
@@ -45,18 +69,15 @@ $stmt->close();
                     <div class="widget catagory mb-50">
                         <h6 class="widget-title mb-30">Categories</h6>
                         <div class="catagories-menu">
-                            <ul class="menu-content collapse show">
-                                <li>
-                                    <a href="#" style="color: black; font-size:small;">Brands</a>
-                                    <ul class="sub-menu collapse show">
-                                        <li><a href="#">Nike</a></li>
-                                        <li><a href="#">Adidas</a></li>
-                                        <li><a href="#">Puma</a></li>
-                                        <li><a href="#">Reebok</a></li>
-                                        <li><a href="#">New Balance</a></li>
-                                        <li><a href="#">Converse</a></li>
-                                    </ul>
-                                </li>
+                            <ul class="sub-menu collapse show">
+                                <?php foreach ($brands as $brand): ?>
+                                    <li>
+                                        <a href="?brand=<?= urlencode($brand['brand_id']) ?>">
+                                            <?= htmlspecialchars($brand['name']) ?>
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                                <li><a href="?" style="font-weight: bold;">Show All</a></li>
                             </ul>
                         </div>
                     </div>
@@ -71,17 +92,6 @@ $stmt->close();
                             <div class="product-topbar d-flex align-items-center justify-content-between">
                                 <div class="total-products">
                                     <p><span><?= $total_products ?></span> products found</p>
-                                </div>
-                                <div class="product-sorting d-flex">
-                                    <p>Sort by:</p>
-                                    <form action="#" method="get">
-                                        <select name="select" id="sortByselect">
-                                            <option value="rating">Highest Rated</option>
-                                            <option value="newest">Newest</option>
-                                            <option value="price_desc">Price: $$ - $</option>
-                                            <option value="price_asc">Price: $ - $$</option>
-                                        </select>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -105,8 +115,8 @@ $stmt->close();
                                             $<?= $product['price'] ?>
                                         </p>
                                         <form action="../controllers/AddToCart.php" method="post">
-                                            <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>">
-                                            <input type="number" name="quantity" value="1" min="1" required> <!-- Added quantity input -->
+                                            <input type="hidden" name="product_id" value="<?= $product['product_id'] ?>">
+                                            <input type="number" name="quantity" value="1" min="1" required>
                                             <div class="add-to-cart-btn">
                                                 <button type="submit" name="add_to_cart" class="btn essence-btn">Add to Cart</button>
                                             </div>
@@ -119,20 +129,36 @@ $stmt->close();
                 </div>
 
                 <!-- Pagination -->
+                <?php
+                $queryParams = [];
+                if ($selected_brand) {
+                    $queryParams['brand'] = $selected_brand;
+                }
+                ?>
                 <nav aria-label="navigation">
                     <ul class="pagination mt-50 mb-70">
                         <?php if ($page > 1): ?>
-                            <li class="page-item"><a class="page-link" href="?page=<?= $page - 1 ?>"><i class="fa fa-angle-left"></i></a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="?<?= http_build_query(array_merge($queryParams, ['page' => $page - 1])) ?>">
+                                    <i class="fa fa-angle-left"></i>
+                                </a>
+                            </li>
                         <?php endif; ?>
 
                         <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                             <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                <a class="page-link" href="?<?= http_build_query(array_merge($queryParams, ['page' => $i])) ?>">
+                                    <?= $i ?>
+                                </a>
                             </li>
                         <?php endfor; ?>
 
                         <?php if ($page < $total_pages): ?>
-                            <li class="page-item"><a class="page-link" href="?page=<?= $page + 1 ?>"><i class="fa fa-angle-right"></i></a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="?<?= http_build_query(array_merge($queryParams, ['page' => $page + 1])) ?>">
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </li>
                         <?php endif; ?>
                     </ul>
                 </nav>

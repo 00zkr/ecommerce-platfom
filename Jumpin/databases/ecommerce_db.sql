@@ -39,7 +39,9 @@ CREATE TABLE `brands` (
 INSERT INTO `brands` (`brand_id`, `name`) VALUES
 (1, 'Adidas'),
 (2, 'Nike'),
-(3, 'Puma');
+(3, 'Puma'),
+(4, 'Fila'),
+(5, 'Reebok');
 
 -- --------------------------------------------------------
 
@@ -206,25 +208,25 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `vendor_id`, `brand_id`, `name`, `description`, `price`, `size`, `stock_quantity`, `imageName1`, `imageName2`, `created_at`) VALUES
-(1, 4, 1, ' Fila Kreatix', ' Fila Kreatix\r\nType : Lifestyle / Streetwear', 78.00, '38-42', 50, 'product-7.1.jpg', 'product-7.2.jpg', '2025-05-01 04:38:28'),
-(2, 5, 2, 'Fila Rega', ' Fila Rega \r\nType : Sneakers basses pour homme / Lifestyle', 160.00, '37-43', 40, 'product-8.2.jpg', 'product-8.1.jpg', '2025-05-01 04:38:28'),
-(3, 6, 3, 'Air Force 1', 'Nike Air Force 1\r\nType : Lifestyle / Running', 120.00, '38-45', 60, 'product-9.1.jpg', 'product-9.2.jpg', '2025-05-01 04:38:28'),
-(4, 4, NULL, 'Adidas Campus', 'Adidas Campus\r\nType : Lifestyle / Casual', 80.00, '39-44', 100, 'product-1.1.jpg', 'product-1.2.jpg', '2025-05-01 17:24:11'),
-(5, 5, NULL, 'Adidas Samba', 'Born on the football pitch, the Samba is now a timeless streetwear icon.', 100.00, '39-45', 58, 'product-2.1.jpg', 'product-2.2.jpg', '2025-05-01 17:46:08'),
-(6, 6, NULL, 'Adidas Stan Smith', 'Adidas Stan Smith\r\nType : Lifestyle / Classique intemporel\r\n', 99.00, '39-44', 15, 'product-3.1.jpg', 'product-3.2.jpg', '2025-05-01 18:03:23'),
-(7, 5, NULL, 'Adidas Super Star', 'Adidas Superstar\r\nType : Streetwear / Lifestyle\r\nÉditions spéciales (avec motifs, collaborations)', 99.00, '40-44', 120, 'product-4.1.jpg', 'product-4.2.jpg', '2025-05-01 18:08:16'),
-(8, 6, NULL, 'Fila Collene', 'Fila Collene CB WMN\r\nType : Sneakers basses / Lifestyle', 66.00, '36-41', 76, 'product-5.1.jpg', 'product-5.2.jpg', '2025-05-01 18:13:38'),
-(9, 4, NULL, 'Fila Courtbay', 'Fila Courtbay\r\nType : Lifestyle / Streetwear', 75.00, '35-45', 11, 'product-6.1.jpg', 'product-6.2.jpg', '2025-05-01 18:17:40'),
-(10, 4, NULL, 'Nike Air Max Plus TN', 'Nike Air Max Plus TN\r\nType : Streetwear / Lifestyle', 300.00, '36-46', 2, 'product-10.1.jpg', 'product-10.2.jpg', '2025-05-01 18:56:44'),
-(11, 6, NULL, 'Nike Dunk SB', 'Nike Dunk SB\r\nType : Skateboard / Streetwear', 149.00, '40-44', 34, 'product-11.1.jpg', 'product-11.2.jpg', '2025-05-01 19:00:02'),
-(12, 5, NULL, 'Nike Zoom', 'Nike Zoom\r\nType : Running / Training haute performance\r\n\r\n', 120.00, '38-42', 50, 'product-12.1.jpg', 'product-12.2.jpg', '2025-05-01 19:02:27'),
-(13, 6, NULL, 'Puma Doublecourt', 'Puma Doublecourt\r\nType : Lifestyle / Streetwear', 80.00, '36-41', 100, 'product-13.1.jpg', 'product-13.2.jpg', '2025-05-01 19:05:35'),
-(14, 4, NULL, 'Puma Morphic Base', 'Puma Morphic Base\r\nType : Lifestyle / Running rétro\r\n', 89.00, '39-44', 76, 'product-14.1.jpg', 'product-14.2.jpg', '2025-05-01 19:09:28'),
-(15, 6, NULL, 'Puma Speedcat', 'Puma Speedcat\r\nType : Motorsport / Lifestyle\r\n\r\n\r\n', 800.00, '35-45', 2, 'product-15.1.jpg', 'product-15.2.jpg', '2025-05-01 19:12:12'),
-(16, 4, NULL, 'Puma Suede Classic', 'Puma Suede Classic / Suede XL\r\nType : Lifestyle / Streetwear\r\n', 99.00, '35-45', 8, 'product-16.1.jpg', 'product-16.2.jpg', '2025-05-01 19:15:36'),
-(17, 4, NULL, ' Reebok Classic Leather', ' Reebok Classic Leather\r\nType : Lifestyle / Rétro\r\n', 44.00, '39-45', 10, 'product-17.1.jpg', 'product-17.2.jpg', '2025-05-01 19:19:08'),
-(18, 5, NULL, ' Reebok Club C 85', ' Reebok Club C 85\r\nType : Lifestyle / Tennis rétro', 145.00, '38-42', 100, 'product-18.1.jpg', 'product-18.2.jpg', '2025-05-01 19:22:51'),
-(19, 5, NULL, 'Reebok Zig Kinetica 21', 'Reebok Zig Kinetica 21\r\nType : Running / Lifestyle futuriste', 99.00, '39-44', 100, 'product-19.1.jpg', 'product19.2.jpg', '2025-05-01 19:28:11');
+(1, 4, 4, ' Fila Kreatix', ' Fila Kreatix\r\nType : Lifestyle / Streetwear', 78.00, '38-42', 50, 'product-7.1.jpg', 'product-7.2.jpg', '2025-05-01 04:38:28'),
+(2, 5, 4, 'Fila Rega', ' Fila Rega \r\nType : Sneakers basses pour homme / Lifestyle', 160.00, '37-43', 40, 'product-8.2.jpg', 'product-8.1.jpg', '2025-05-01 04:38:28'),
+(3, 6, 2, 'Air Force 1', 'Nike Air Force 1\r\nType : Lifestyle / Running', 120.00, '38-45', 60, 'product-9.1.jpg', 'product-9.2.jpg', '2025-05-01 04:38:28'),
+(4, 4, 1, 'Adidas Campus', 'Adidas Campus\r\nType : Lifestyle / Casual', 80.00, '39-44', 100, 'product-1.1.jpg', 'product-1.2.jpg', '2025-05-01 17:24:11'),
+(5, 5, 1, 'Adidas Samba', 'Born on the football pitch, the Samba is now a timeless streetwear icon.', 100.00, '39-45', 58, 'product-2.1.jpg', 'product-2.2.jpg', '2025-05-01 17:46:08'),
+(6, 6, 1, 'Adidas Stan Smith', 'Adidas Stan Smith\r\nType : Lifestyle / Classique intemporel\r\n', 99.00, '39-44', 15, 'product-3.1.jpg', 'product-3.2.jpg', '2025-05-01 18:03:23'),
+(7, 5, 1, 'Adidas Super Star', 'Adidas Superstar\r\nType : Streetwear / Lifestyle\r\nÉditions spéciales (avec motifs, collaborations)', 99.00, '40-44', 120, 'product-4.1.jpg', 'product-4.2.jpg', '2025-05-01 18:08:16'),
+(8, 6, 4, 'Fila Collene', 'Fila Collene CB WMN\r\nType : Sneakers basses / Lifestyle', 66.00, '36-41', 76, 'product-5.1.jpg', 'product-5.2.jpg', '2025-05-01 18:13:38'),
+(9, 4, 4, 'Fila Courtbay', 'Fila Courtbay\r\nType : Lifestyle / Streetwear', 75.00, '35-45', 11, 'product-6.1.jpg', 'product-6.2.jpg', '2025-05-01 18:17:40'),
+(10, 4, 2, 'Nike Air Max Plus TN', 'Nike Air Max Plus TN\r\nType : Streetwear / Lifestyle', 300.00, '36-46', 2, 'product-10.1.jpg', 'product-10.2.jpg', '2025-05-01 18:56:44'),
+(11, 6, 2, 'Nike Dunk SB', 'Nike Dunk SB\r\nType : Skateboard / Streetwear', 149.00, '40-44', 34, 'product-11.1.jpg', 'product-11.2.jpg', '2025-05-01 19:00:02'),
+(12, 5, 2, 'Nike Zoom', 'Nike Zoom\r\nType : Running / Training haute performance\r\n\r\n', 120.00, '38-42', 50, 'product-12.1.jpg', 'product-12.2.jpg', '2025-05-01 19:02:27'),
+(13, 6, 3, 'Puma Doublecourt', 'Puma Doublecourt\r\nType : Lifestyle / Streetwear', 80.00, '36-41', 100, 'product-13.1.jpg', 'product-13.2.jpg', '2025-05-01 19:05:35'),
+(14, 4, 3, 'Puma Morphic Base', 'Puma Morphic Base\r\nType : Lifestyle / Running rétro\r\n', 89.00, '39-44', 76, 'product-14.1.jpg', 'product-14.2.jpg', '2025-05-01 19:09:28'),
+(15, 6, 3, 'Puma Speedcat', 'Puma Speedcat\r\nType : Motorsport / Lifestyle\r\n\r\n\r\n', 800.00, '35-45', 2, 'product-15.1.jpg', 'product-15.2.jpg', '2025-05-01 19:12:12'),
+(16, 4, 3, 'Puma Suede Classic', 'Puma Suede Classic / Suede XL\r\nType : Lifestyle / Streetwear\r\n', 99.00, '35-45', 8, 'product-16.1.jpg', 'product-16.2.jpg', '2025-05-01 19:15:36'),
+(17, 4, 5, ' Reebok Classic Leather', ' Reebok Classic Leather\r\nType : Lifestyle / Rétro\r\n', 44.00, '39-45', 10, 'product-17.1.jpg', 'product-17.2.jpg', '2025-05-01 19:19:08'),
+(18, 5, 5, ' Reebok Club C 85', ' Reebok Club C 85\r\nType : Lifestyle / Tennis rétro', 145.00, '38-42', 100, 'product-18.1.jpg', 'product-18.2.jpg', '2025-05-01 19:22:51'),
+(19, 5, 5, 'Reebok Zig Kinetica 21', 'Reebok Zig Kinetica 21\r\nType : Running / Lifestyle futuriste', 99.00, '39-44', 100, 'product-19.1.jpg', 'product19.2.jpg', '2025-05-01 19:28:11');
 
 -- --------------------------------------------------------
 

@@ -61,7 +61,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Add Product</button>
-    <a href="../admin/products.php" class="btn btn-secondary ms-2">Cancel</a>
+    <a href="../views/all_products.php" class="btn btn-secondary ms-2">Cancel</a>
   </form>
 </div>
 

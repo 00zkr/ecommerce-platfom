@@ -48,9 +48,9 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="all_users.php">Users</a></li>
-                            <li><a href="all_products.php">Products</a></li>
-                            <li><a href="all_orders.php">Orders</a></li>
+                            <li><a href="../views/all_users.php">Users</a></li>
+                            <li><a href="../views/all_products.php">Products</a></li>
+                            <li><a href="../views/all_orders.php">Orders</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
